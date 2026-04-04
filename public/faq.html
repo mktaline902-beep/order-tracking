@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ — Frequently Asked Questions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .faq-page { padding: 24px 0 48px; }
+
+    .faq-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      margin-bottom: 24px;
+    }
+    .faq-back:hover { text-decoration: underline; }
+
+    .faq-page-title {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .faq-page-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .faq-category {
+      margin-bottom: 32px;
+    }
+    .faq-category-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--orange);
+      display: inline-block;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .faq-item {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      text-align: left;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+    .faq-question:hover {
+      background: var(--bg-light);
+    }
+
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.25s;
+      color: var(--text-light);
+    }
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+    }
+
+    .faq-answer-inner {
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .faq-cta {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-top: 16px;
+    }
+    .faq-cta h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .faq-cta p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <img src="/logo-amz.jpg" alt="Amazon" class="logo-img">
+      </div>
+      <nav class="header-nav">
+        <a href="/" class="nav-link">My Order</a>
+        <a href="/support.html" class="nav-link">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="faq-page">
+    <div class="container">
+
+      <a href="/" class="faq-back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to My Order
+      </a>
+
+      <h1 class="faq-page-title">Frequently Asked Questions</h1>
+      <p class="faq-page-subtitle">Find answers to the most common questions about your order</p>
+
+      <!-- Order & Payment -->
+      <div class="faq-category">
+        <span class="faq-category-title">Order & Payment</span>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I know my order was confirmed?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Once your payment is approved, you'll be redirected to your personal order portal where you can see a green "Order Confirmed" status. You'll also receive a confirmation email with your order details and a direct link to this page.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What payment methods are accepted?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">We accept all major credit and debit cards (Visa, Mastercard, American Express, Discover), as well as PayPal and Apple Pay. All transactions are processed securely with 256-bit SSL encryption.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Is my payment information secure?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Absolutely. We use industry-standard SSL encryption and do not store your credit card details on our servers. Your payment is processed through a PCI-DSS compliant payment gateway, ensuring maximum security for all transactions.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Can I change or cancel my order?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Orders can be modified or cancelled within 2 hours of purchase, as long as they haven't entered the processing stage. Please contact our support team immediately via the live chat if you need to make changes.</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Shipping & Delivery -->
+      <div class="faq-category">
+        <span class="faq-category-title">Shipping & Delivery</span>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How long does shipping take?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Standard shipping takes 5-8 business days to the United States, Canada, United Kingdom, Australia, and New Zealand. Your order will be dispatched within 48 business hours after payment confirmation. Tracking information will be updated as your package moves through the delivery network.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Do you ship internationally?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes! We currently ship to the United States, Canada, United Kingdom, Australia, and New Zealand. Shipping is free for all orders. Delivery times may vary slightly depending on your location and local customs processing.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I track my order?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">You can track your order directly on the main page of your order portal. Simply enter your tracking number in the "Track Your Order" section. Once your package is shipped, you'll receive a tracking code via email that you can use to monitor delivery status in real time.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What if my package is delayed?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Delays can occasionally occur due to high demand, customs processing, or carrier issues. If your package hasn't arrived within the estimated timeframe, please contact our support team and we'll investigate immediately. We'll keep you updated every step of the way.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Are there any customs or import fees?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">In most cases, no additional fees apply. However, depending on your country's import regulations, customs duties or taxes may be charged upon delivery. These fees are determined by your local customs authority and are the responsibility of the recipient.</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Mystery Box -->
+      <div class="faq-category">
+        <span class="faq-category-title">Amazon Mystery Box</span>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What is the Amazon Mystery Box?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">The Amazon Mystery Box is a curated package containing a surprise selection of brand-name products. Each box is carefully assembled and the contents are valued at significantly more than the purchase price. It's a fun and exciting way to discover new products!</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What kind of products can I expect?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Mystery Boxes may include a wide variety of items such as electronics, gadgets, accessories, lifestyle products, and more. Each box is unique and the specific contents are a surprise — that's what makes it exciting! All items are brand new and in original packaging.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Is the box value really worth more than $29?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes! Every Mystery Box contains products with a combined retail value that exceeds the $29 purchase price. Many customers have reported receiving items valued at 3-5x the price they paid. The exact contents vary with each box.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              Can I return or exchange my Mystery Box?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Due to the nature of mystery boxes, we cannot accept returns or exchanges for the contents. However, if your box arrives damaged or if any items are defective, please contact our support team within 7 days of delivery and we'll arrange a replacement.</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="faq-category">
+        <span class="faq-category-title">Support & Contact</span>
+        <div class="faq-list">
+
+          <div class="faq-item">
+            <button class="faq-question">
+              How do I contact customer support?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">You can reach our support team 24/7 through the live chat feature. Simply click the "Customer Support" card on the main page or visit the Support page directly. Our team typically responds within minutes.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              What are your support hours?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Our customer support team is available 24 hours a day, 7 days a week. Whether you're in New York, London, Sydney, or Auckland — we're here to help whenever you need us.</div></div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              I didn't receive a confirmation email. What should I do?
+              <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-answer"><div class="faq-answer-inner">Please check your spam or junk folder first, as confirmation emails sometimes get filtered. If you still can't find it after 15 minutes, contact our support team via live chat with your name and email address, and we'll resend it right away.</div></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="faq-cta">
+        <h3>Still have questions?</h3>
+        <p>Our support team is available 24/7 and ready to help.</p>
+        <a href="/support.html" class="btn btn-primary">Chat with us</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <img src="/logo-branca.png" alt="Amazon" class="footer-logo">
+        <div class="footer-links">
+          <a href="/">My Order</a>
+          <a href="/support.html">Support</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 VIP Order Portal. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var wasOpen = item.classList.contains('open');
+        // Close all others
+        document.querySelectorAll('.faq-item.open').forEach(function(el) {
+          el.classList.remove('open');
+        });
+        // Toggle clicked
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

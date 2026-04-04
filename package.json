@@ -1,0 +1,12 @@
+{
+  "name": "order-tracking",
+  "version": "1.0.0",
+  "description": "VIP Order Portal - Portal de rastreamento de pedidos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

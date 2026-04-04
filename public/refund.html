@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Refund — VIP Order Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .refund-page {
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .refund-body {
+      flex: 1;
+      padding: 24px 0 48px;
+    }
+
+    .refund-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      text-decoration: none;
+      margin-bottom: 24px;
+    }
+    .refund-back:hover { text-decoration: underline; }
+
+    /* Stepper */
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      color: var(--text-light);
+      background: var(--bg-white);
+      transition: all 0.3s;
+    }
+
+    .step-indicator.active .step-num {
+      border-color: var(--orange);
+      background: var(--orange);
+      color: white;
+    }
+
+    .step-indicator.done .step-num {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .step-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-light);
+      transition: color 0.3s;
+    }
+
+    .step-indicator.active .step-name,
+    .step-indicator.done .step-name {
+      color: var(--text);
+    }
+
+    .step-line {
+      width: 40px;
+      height: 2px;
+      background: var(--border);
+      margin: 0 8px;
+      transition: background 0.3s;
+    }
+
+    .step-line.done {
+      background: var(--green);
+    }
+
+    /* Card */
+    .refund-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+    }
+
+    .refund-card-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .refund-card-logo img {
+      height: 32px;
+    }
+
+    /* Step panels */
+    .step-panel {
+      display: none;
+    }
+
+    .step-panel.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    /* Quiz options */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--bg-light);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .quiz-option:hover {
+      border-color: var(--border-dark);
+      background: var(--bg);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--orange);
+      background: #fff8ee;
+    }
+
+    .quiz-radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .quiz-option.selected .quiz-radio {
+      border-color: var(--orange);
+    }
+
+    .quiz-radio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: transparent;
+      transition: background 0.15s;
+    }
+
+    .quiz-option.selected .quiz-radio-dot {
+      background: var(--orange);
+    }
+
+    /* Form */
+    .refund-field {
+      margin-bottom: 20px;
+    }
+
+    .refund-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .refund-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border-dark);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .refund-input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,113,133,0.12);
+    }
+
+    .refund-input::placeholder {
+      color: var(--text-light);
+    }
+
+    .refund-note {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    /* Buttons */
+    .refund-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .btn-refund-next {
+      flex: 1;
+      padding: 12px 20px;
+      background: #f5d78a;
+      color: var(--text);
+      border: 1px solid #d4b568;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-refund-next:hover {
+      background: #eece7a;
+    }
+
+    .btn-refund-next:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-refund-back {
+      padding: 12px 20px;
+      background: var(--bg-light);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .btn-refund-back:hover {
+      background: var(--border);
+    }
+
+    /* Processing */
+    .processing {
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .processing-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .processing p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    /* Success */
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #e8f5e9;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .success-title {
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--green);
+    }
+
+    .success-msg {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .success-box {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .success-box-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 13px;
+    }
+
+    .success-box-row span:first-child {
+      color: var(--text-secondary);
+    }
+
+    .success-box-row span:last-child {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .success-footer {
+      text-align: center;
+    }
+
+    .success-footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .success-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Error */
+    .field-error {
+      color: var(--red);
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .refund-card {
+        padding: 24px 20px;
+      }
+      .step-name {
+        display: none;
+      }
+      .step-line {
+        width: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="refund-page">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-inner">
+        <div class="logo">
+          <img src="/logo-amz.jpg" alt="Amazon" class="logo-img">
+        </div>
+        <nav class="header-nav">
+          <a href="/" class="nav-link">My Order</a>
+          <a href="/support.html" class="nav-link">Support</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="refund-body">
+      <div class="container">
+
+        <a href="/" class="refund-back">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back to My Order
+        </a>
+
+        <!-- Stepper -->
+        <div class="stepper">
+          <div class="step-indicator active" id="ind1">
+            <div class="step-num">1</div>
+            <span class="step-name">Reason</span>
+          </div>
+          <div class="step-line" id="line1"></div>
+          <div class="step-indicator" id="ind2">
+            <div class="step-num">2</div>
+            <span class="step-name">Details</span>
+          </div>
+          <div class="step-line" id="line2"></div>
+          <div class="step-indicator" id="ind3">
+            <div class="step-num">3</div>
+            <span class="step-name">Confirm</span>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div class="refund-card">
+          <!-- Step 1: Quiz -->
+          <div class="step-panel active" id="step1">
+            <h2 class="step-title">Why are you requesting a refund?</h2>
+            <p class="step-desc">Select the option that best describes your situation</p>
+
+            <div class="quiz-options" id="quizOptions">
+              <div class="quiz-option" data-value="not-received">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                I haven't received my order yet
+              </div>
+              <div class="quiz-option" data-value="wrong-item">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                I received the wrong item
+              </div>
+              <div class="quiz-option" data-value="damaged">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                My item arrived damaged
+              </div>
+              <div class="quiz-option" data-value="not-described">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                Item not as described
+              </div>
+              <div class="quiz-option" data-value="changed-mind">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                I changed my mind
+              </div>
+              <div class="quiz-option" data-value="other">
+                <div class="quiz-radio"><div class="quiz-radio-dot"></div></div>
+                Other reason
+              </div>
+            </div>
+
+            <div class="refund-actions">
+              <button class="btn-refund-next" id="toStep2" disabled>Continue</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Email -->
+          <div class="step-panel" id="step2">
+            <h2 class="step-title">Verify your purchase</h2>
+            <p class="step-desc">Enter the email address used during checkout so we can locate your order</p>
+
+            <div class="refund-field">
+              <label class="refund-label">Purchase Email</label>
+              <input type="email" class="refund-input" id="refundEmail" placeholder="you@example.com">
+              <span class="field-error" id="emailError">Please enter a valid email address</span>
+            </div>
+
+            <div class="refund-field">
+              <label class="refund-label">Additional comments (optional)</label>
+              <textarea class="refund-input" id="refundComments" rows="3" placeholder="Describe your issue in more detail..." style="resize: vertical;"></textarea>
+            </div>
+
+            <p class="refund-note">We'll use this email to send the refund confirmation and updates.</p>
+
+            <div class="refund-actions">
+              <button class="btn-refund-back" id="backToStep1">Back</button>
+              <button class="btn-refund-next" id="toStep3">Submit Refund Request</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Processing + Success -->
+          <div class="step-panel" id="step3">
+            <!-- Processing state -->
+            <div id="processingState">
+              <div class="processing">
+                <div class="processing-spinner"></div>
+                <p>Processing your refund request...</p>
+              </div>
+            </div>
+
+            <!-- Success state -->
+            <div id="successState" style="display:none;">
+              <div class="success-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h2 class="success-title">Refund Request Approved!</h2>
+              <p class="success-msg">Your refund has been successfully processed. The amount will be credited to your next card statement within 5-10 business days.</p>
+
+              <div class="success-box">
+                <div class="success-box-row">
+                  <span>Refund Amount</span>
+                  <span>$29.00</span>
+                </div>
+                <div class="success-box-row">
+                  <span>Method</span>
+                  <span>Next card statement</span>
+                </div>
+                <div class="success-box-row">
+                  <span>Email</span>
+                  <span id="successEmail">—</span>
+                </div>
+                <div class="success-box-row">
+                  <span>Reference</span>
+                  <span id="successRef">—</span>
+                </div>
+                <div class="success-box-row">
+                  <span>Estimated Credit</span>
+                  <span>5-10 business days</span>
+                </div>
+              </div>
+
+              <div class="refund-card-logo" style="margin-bottom:16px;">
+                <img src="/logo-amz.jpg" alt="Amazon">
+              </div>
+
+              <div class="success-footer">
+                <a href="/">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                  Return to My Order
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-top">
+          <img src="/logo-branca.png" alt="Amazon" class="footer-logo">
+          <div class="footer-links">
+            <a href="/">My Order</a>
+            <a href="/support.html">Support</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 VIP Order Portal. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    (function() {
+      var selectedReason = null;
+
+      // Quiz selection
+      var options = document.querySelectorAll('.quiz-option');
+      var toStep2Btn = document.getElementById('toStep2');
+
+      options.forEach(function(opt) {
+        opt.addEventListener('click', function() {
+          options.forEach(function(o) { o.classList.remove('selected'); });
+          opt.classList.add('selected');
+          selectedReason = opt.getAttribute('data-value');
+          toStep2Btn.disabled = false;
+        });
+      });
+
+      // Step navigation
+      var panels = document.querySelectorAll('.step-panel');
+      var indicators = [
+        document.getElementById('ind1'),
+        document.getElementById('ind2'),
+        document.getElementById('ind3')
+      ];
+      var lines = [
+        document.getElementById('line1'),
+        document.getElementById('line2')
+      ];
+
+      function goToStep(n) {
+        panels.forEach(function(p) { p.classList.remove('active'); });
+        document.getElementById('step' + n).classList.add('active');
+
+        indicators.forEach(function(ind, i) {
+          ind.classList.remove('active', 'done');
+          if (i < n - 1) {
+            ind.classList.add('done');
+            ind.querySelector('.step-num').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+          } else if (i === n - 1) {
+            ind.classList.add('active');
+            ind.querySelector('.step-num').textContent = i + 1;
+          } else {
+            ind.querySelector('.step-num').textContent = i + 1;
+          }
+        });
+
+        lines.forEach(function(line, i) {
+          line.classList.toggle('done', i < n - 1);
+        });
+      }
+
+      // Step 1 → 2
+      toStep2Btn.addEventListener('click', function() {
+        if (!selectedReason) return;
+        goToStep(2);
+      });
+
+      // Step 2 → back
+      document.getElementById('backToStep1').addEventListener('click', function() {
+        goToStep(1);
+      });
+
+      // Step 2 → 3 (submit)
+      document.getElementById('toStep3').addEventListener('click', function() {
+        var email = document.getElementById('refundEmail').value.trim();
+        var errorEl = document.getElementById('emailError');
+
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          errorEl.classList.add('show');
+          document.getElementById('refundEmail').focus();
+          return;
+        }
+        errorEl.classList.remove('show');
+
+        goToStep(3);
+
+        // Simulate processing
+        setTimeout(function() {
+          document.getElementById('processingState').style.display = 'none';
+          document.getElementById('successState').style.display = 'block';
+          document.getElementById('successEmail').textContent = email;
+          document.getElementById('successRef').textContent = 'REF-' + Math.random().toString(36).substr(2, 8).toUpperCase();
+
+          // Mark step 3 as done
+          indicators[2].classList.remove('active');
+          indicators[2].classList.add('done');
+          indicators[2].querySelector('.step-num').innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+        }, 3000);
+      });
+
+      // Clear error on input
+      document.getElementById('refundEmail').addEventListener('input', function() {
+        document.getElementById('emailError').classList.remove('show');
+      });
+    })();
+  </script>
+
+</body>
+</html>

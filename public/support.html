@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Customer Support — Live Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #131921;
+      --orange: #FF9900;
+      --bg: #F5F5F5;
+      --bg-white: #FFFFFF;
+      --border: #D5D9D9;
+      --text: #0F1111;
+      --text-secondary: #565959;
+      --green: #067D62;
+      --font: 'Source Sans 3', Arial, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* App shell layout */
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* Top bar - native feel */
+    .top-bar {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: var(--bg);
+    }
+
+    .back-btn svg {
+      flex-shrink: 0;
+    }
+
+    .top-bar-title {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .top-bar-title h1 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .top-bar-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .top-bar-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .top-bar-logo {
+      height: 24px;
+      width: auto;
+    }
+
+    /* Chat area */
+    .chat-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Welcome state before chat loads */
+    .chat-welcome {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 32px;
+      gap: 16px;
+    }
+
+    .chat-welcome-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fff5e6;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chat-welcome h2 {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .chat-welcome p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 320px;
+      line-height: 1.5;
+    }
+
+    .chat-loading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 8px;
+    }
+
+    .chat-loading-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Hide Chatwoot default bubble */
+    .woot-widget-bubble,
+    .woot--bubble-holder {
+      display: none !important;
+    }
+
+    #chatwoot-container {
+      flex: 1;
+      position: relative;
+      display: none;
+    }
+
+    #chatwoot-container.ready {
+      display: block;
+    }
+
+    /* Force the Chatwoot widget to fill fixed area below top bar */
+    .woot-widget-holder {
+      position: fixed !important;
+      top: 56px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: calc(100vh - 56px) !important;
+      height: calc(100dvh - 56px) !important;
+      max-height: none !important;
+      min-height: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      z-index: 1 !important;
+      transform: none !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .woot-widget-holder iframe {
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      border-radius: 0 !important;
+    }
+
+    /* Bottom safe area for mobile */
+    .bottom-safe {
+      height: env(safe-area-inset-bottom, 0px);
+      background: var(--bg-white);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <a href="/" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </a>
+      <div class="top-bar-title">
+        <h1>Customer Support</h1>
+        <span class="top-bar-status">Online now</span>
+      </div>
+      <img src="/logo-amz.jpg" alt="Amazon" class="top-bar-logo">
+    </div>
+
+    <!-- Chat area -->
+    <div class="chat-area">
+      <!-- Welcome shown while Chatwoot loads -->
+      <div class="chat-welcome" id="chatWelcome">
+        <div class="chat-welcome-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h2>How can we help?</h2>
+        <p>Our support team is available 24/7 to assist you with your order, delivery, or any other questions.</p>
+        <div class="chat-loading">
+          <div class="chat-loading-spinner"></div>
+          Loading chat...
+        </div>
+      </div>
+
+      <!-- Chatwoot widget fills this -->
+      <div id="chatwoot-container"></div>
+    </div>
+
+    <div class="bottom-safe"></div>
+  </div>
+
+  <script>
+    (function(d, t) {
+      var BASE_URL = "https://app.chatwoot.com";
+      var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      g.src = BASE_URL + "/packs/js/sdk.js";
+      g.async = true;
+      s.parentNode.insertBefore(g, s);
+      g.onload = function() {
+        window.chatwootSDK.run({
+          websiteToken: 'rSoSBKh1EKKx1dbb6X7AKypD',
+          baseUrl: BASE_URL
+        });
+
+        window.addEventListener('chatwoot:ready', function() {
+          // Open chat and show container
+          if (window.$chatwoot) {
+            window.$chatwoot.toggle('open');
+          }
+
+          // Wait a moment for the widget to render, then show
+          setTimeout(function() {
+            var container = document.getElementById('chatwoot-container');
+            var welcome = document.getElementById('chatWelcome');
+            container.classList.add('ready');
+            welcome.style.display = 'none';
+          }, 500);
+        });
+      };
+    })(document, "script");
+  </script>
+
+</body>
+</html>
