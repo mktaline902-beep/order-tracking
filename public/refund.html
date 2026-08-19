@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request a Refund — VIP Order Portal</title>
+  <title>Request a Refund — Your Order Portal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -64,8 +64,8 @@
     }
 
     .step-indicator.active .step-num {
-      border-color: var(--orange);
-      background: var(--orange);
+      border-color: var(--brand);
+      background: var(--brand);
       color: white;
     }
 
@@ -174,8 +174,8 @@
     }
 
     .quiz-option.selected {
-      border-color: var(--orange);
-      background: #fff8ee;
+      border-color: var(--brand);
+      background: var(--brand-soft);
     }
 
     .quiz-radio {
@@ -191,7 +191,7 @@
     }
 
     .quiz-option.selected .quiz-radio {
-      border-color: var(--orange);
+      border-color: var(--brand);
     }
 
     .quiz-radio-dot {
@@ -203,7 +203,7 @@
     }
 
     .quiz-option.selected .quiz-radio-dot {
-      background: var(--orange);
+      background: var(--brand);
     }
 
     /* Form */
@@ -256,19 +256,20 @@
     .btn-refund-next {
       flex: 1;
       padding: 12px 20px;
-      background: #f5d78a;
-      color: var(--text);
-      border: 1px solid #d4b568;
-      border-radius: 8px;
+      background: var(--brand);
+      color: #fff;
+      border: 1px solid var(--brand);
+      border-radius: 10px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
       font-family: inherit;
       cursor: pointer;
       transition: background 0.15s;
     }
 
     .btn-refund-next:hover {
-      background: #eece7a;
+      background: var(--brand-hover);
+      border-color: var(--brand-hover);
     }
 
     .btn-refund-next:disabled {
@@ -303,7 +304,7 @@
       width: 40px;
       height: 40px;
       border: 3px solid var(--border);
-      border-top-color: var(--orange);
+      border-top-color: var(--brand);
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
       margin: 0 auto 16px;
@@ -421,7 +422,14 @@
     <header class="header">
       <div class="container header-inner">
         <div class="logo">
-          <img src="/logo-amz.jpg" alt="Amazon" class="logo-img">
+          <a href="/" style="display:block;text-decoration:none">
+            <svg class="logo-svg" width="180" height="34" viewBox="0 0 180 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+              <rect x="0" y="3" width="28" height="28" rx="8" fill="#6D28D9"/>
+              <path d="M8 11.5 L14 8.5 L20 11.5 L20 21.5 L14 24.5 L8 21.5 Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+              <path d="M8 11.5 L14 14.5 L20 11.5 M14 14.5 L14 24.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+              <text x="36" y="22" font-family="'Source Sans 3',Arial,sans-serif" font-size="15" font-weight="800" fill="#0F172A" letter-spacing="-0.3">Your Order Portal</text>
+            </svg>
+          </a>
         </div>
         <nav class="header-nav">
           <a href="/" class="nav-link">My Order</a>
@@ -561,7 +569,12 @@
               </div>
 
               <div class="refund-card-logo" style="margin-bottom:16px;">
-                <img src="/logo-amz.jpg" alt="Amazon">
+                <svg width="150" height="28" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+                  <rect x="0" y="0" width="26" height="26" rx="7" fill="#6D28D9"/>
+                  <path d="M7.5 10 L13 7 L18.5 10 L18.5 19 L13 22 L7.5 19 Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                  <path d="M7.5 10 L13 13 L18.5 10 M13 13 L13 22" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                  <text x="32" y="18" font-family="'Source Sans 3',Arial,sans-serif" font-size="13" font-weight="800" fill="#0F172A" letter-spacing="-0.3">Your Order Portal</text>
+                </svg>
               </div>
 
               <div class="success-footer">
@@ -581,14 +594,22 @@
     <footer class="footer">
       <div class="container">
         <div class="footer-top">
-          <img src="/logo-branca.png" alt="Amazon" class="footer-logo">
+          <svg class="footer-logo-svg" width="180" height="34" viewBox="0 0 180 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+            <rect x="0" y="3" width="28" height="28" rx="8" fill="#A78BFA"/>
+            <path d="M8 11.5 L14 8.5 L20 11.5 L20 21.5 L14 24.5 L8 21.5 Z" stroke="#0F172A" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+            <path d="M8 11.5 L14 14.5 L20 11.5 M14 14.5 L14 24.5" stroke="#0F172A" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+            <text x="36" y="22" font-family="'Source Sans 3',Arial,sans-serif" font-size="15" font-weight="800" fill="#fff" letter-spacing="-0.3">Your Order Portal</text>
+          </svg>
           <div class="footer-links">
             <a href="/">My Order</a>
             <a href="/support.html">Support</a>
+            <a href="/policies.html#refund-policy">Refund Policy</a>
+            <a href="/policies.html#privacy">Privacy</a>
+            <a href="/policies.html#terms">Terms</a>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 VIP Order Portal. All rights reserved.</p>
+          <p>&copy; 2026 Your Order Portal LLC &middot; 1209 N Orange Street, Wilmington, DE 19801, USA &middot; <a href="mailto:support@you-order-portal.xyz" style="color:inherit;text-decoration:underline">support@you-order-portal.xyz</a></p>
         </div>
       </div>
     </footer>

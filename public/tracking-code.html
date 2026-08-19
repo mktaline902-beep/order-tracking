@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Get Tracking Code — Your Order Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --brand: #6D28D9;
+      --brand-hover: #5B21B6;
+      --brand-light: #EDE9FE;
+      --brand-soft: #F5F3FF;
+      --orange: #6D28D9;
+      --orange-hover: #5B21B6;
+      --bg: #FAFAFA;
+      --bg-white: #FFFFFF;
+      --border: #E2E8F0;
+      --border-dark: #CBD5E1;
+      --text: #0F172A;
+      --text-secondary: #475569;
+      --text-light: #94A3B8;
+      --green: #059669;
+      --green-light: #D1FAE5;
+      --teal: #6D28D9;
+      --font: 'Source Sans 3', system-ui, Arial, sans-serif;
+      --radius: 10px;
+      --radius-lg: 14px;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .app-shell {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 16px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      font-family: var(--font);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px 4px;
+      border-radius: 6px;
+      transition: background 0.15s;
+      text-decoration: none;
+    }
+
+    .back-btn:hover { background: var(--bg); }
+
+    .top-bar-title {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .top-bar-title h1 {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .top-bar-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .top-bar-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .top-bar-logo {
+      height: 24px;
+      width: auto;
+    }
+
+    /* Content area */
+    .content-area {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Info section */
+    .info-section {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 32px 20px;
+      text-align: center;
+    }
+
+    .info-icon-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--brand-light);
+      color: var(--brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .info-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .info-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .notice-box {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--orange);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .notice-box h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notice-box p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .steps-list {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .steps-list h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+    }
+
+    .step-item + .step-item {
+      border-top: 1px solid var(--border);
+    }
+
+    .step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-top: 3px;
+    }
+
+    .step-text strong {
+      color: var(--text);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      color: var(--text-light);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .btn-support {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 14px 24px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      border: 2px solid var(--orange);
+      background: #fffaf0;
+      color: var(--text);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+
+    .btn-support:hover {
+      background: #fff5e6;
+      border-color: var(--orange-hover);
+    }
+
+    .btn-support svg {
+      color: var(--orange);
+    }
+
+    .support-note {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* Hide Chatwoot default bubble */
+    .woot-widget-bubble,
+    .woot--bubble-holder {
+      display: none !important;
+    }
+
+    .woot-widget-holder {
+      display: none !important;
+    }
+
+    .bottom-safe {
+      height: env(safe-area-inset-bottom, 0px);
+      background: var(--bg-white);
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <a href="/" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </a>
+      <div class="top-bar-title">
+        <h1>Get Tracking Code</h1>
+        <span class="top-bar-status">Online now</span>
+      </div>
+      <svg class="top-bar-logo" width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+        <rect x="0" y="0" width="26" height="26" rx="7" fill="#6D28D9"/>
+        <path d="M7.5 10.5 L13 7.5 L18.5 10.5 L18.5 19.5 L13 22.5 L7.5 19.5 Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        <path d="M7.5 10.5 L13 13.5 L18.5 10.5 M13 13.5 L13 22.5" stroke="#fff" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+        <text x="32" y="19" font-family="'Source Sans 3',Arial,sans-serif" font-size="13" font-weight="800" fill="#0F172A" letter-spacing="-0.3">YO Portal</text>
+      </svg>
+    </div>
+
+    <!-- Content -->
+    <div class="content-area">
+      <div class="info-section">
+        <!-- Icon -->
+        <div class="info-icon-circle">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+
+        <h2>Your Tracking Code</h2>
+        <p>After your purchase is confirmed, our team begins preparing your order for shipment. The tracking code will be generated and sent to you automatically.</p>
+
+        <!-- Notice box -->
+        <div class="notice-box">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Important Information
+          </h3>
+          <p>Your tracking code may take <strong>up to 5 business days</strong> to be generated after your purchase is confirmed. This is the standard processing time for order preparation and logistics setup.</p>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-list">
+          <h3>How it works</h3>
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-text"><strong>Payment confirmed</strong> — Your purchase has been approved and is being processed.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-text"><strong>Order preparation</strong> — Your Exclusive Box is being assembled and packaged (1-3 days).</div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-text"><strong>Tracking code sent</strong> — You will receive your tracking code via email within up to 5 business days.</div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">Haven't received your code yet?</div>
+
+        <!-- Support button -->
+        <a href="/support.html" class="btn-support">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Contact Support
+        </a>
+        <p class="support-note">If more than 5 business days have passed and you still haven't received your tracking code, our support team is available 24/7 to help you.</p>
+      </div>
+    </div>
+
+    <div class="bottom-safe"></div>
+  </div>
+
+</body>
+</html>

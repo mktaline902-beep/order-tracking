@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Policies & Legal — Your Order Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* === 100% WHITE POLICIES === */
+    html, body { background: #FFFFFF !important; }
+    .header { background: #FFFFFF !important; border-bottom: 1px solid #F1F5F9 !important; box-shadow: none !important; }
+    .footer { background: #FFFFFF !important; color: #475569 !important; border-top: 1px solid #F1F5F9 !important; }
+    .footer-top { border-bottom: 1px solid #F1F5F9 !important; }
+    .footer-bottom p { color: #94A3B8 !important; }
+    .footer-links a { color: #475569 !important; }
+    .footer-links a:hover { color: #6D28D9 !important; }
+
+    .pol-page {
+      background: #FFFFFF;
+      padding: 32px 0 80px;
+    }
+
+    .pol-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #6D28D9;
+      text-decoration: none;
+      margin-bottom: 24px;
+      padding: 7px 14px;
+      border-radius: 50px;
+      background: #F5F3FF;
+      border: 1px solid #EDE9FE;
+      transition: all 0.15s;
+    }
+    .pol-back:hover {
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+    }
+
+    .pol-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pol-toc {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+      padding: 20px;
+      background: #FAFAFA;
+      border: 1px solid #F1F5F9;
+      border-radius: 14px;
+    }
+
+    .pol-toc h4 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 14px;
+    }
+
+    .pol-toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pol-toc a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+
+    .pol-toc a:hover {
+      background: #F5F3FF;
+      color: #6D28D9;
+    }
+
+    .pol-toc a svg {
+      flex-shrink: 0;
+      color: #94A3B8;
+    }
+
+    .pol-toc a:hover svg { color: #6D28D9; }
+
+    .pol-content {
+      max-width: 720px;
+    }
+
+    .pol-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #6D28D9;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pol-page-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+      line-height: 1.15;
+    }
+
+    .pol-intro {
+      font-size: 16px;
+      color: #64748B;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .pol-section {
+      scroll-margin-top: 90px;
+      margin-bottom: 56px;
+    }
+
+    .pol-section h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .pol-section .pol-updated {
+      display: inline-block;
+      font-size: 12px;
+      color: #94A3B8;
+      margin-bottom: 20px;
+    }
+
+    .pol-section h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
+    .pol-section p {
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .pol-section ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 14px;
+    }
+
+    .pol-section ul li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 15px;
+      color: #475569;
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    .pol-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 12px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6D28D9;
+    }
+
+    .pol-section a {
+      color: #6D28D9;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .pol-section a:hover { text-decoration: underline; }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .contact-item {
+      padding: 18px;
+      background: #FAFAFA;
+      border: 1px solid #F1F5F9;
+      border-radius: 12px;
+    }
+
+    .contact-item .lbl {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #94A3B8;
+      margin-bottom: 8px;
+    }
+
+    .contact-item .lbl svg {
+      color: #6D28D9;
+    }
+
+    .contact-item .val {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.5;
+    }
+
+    .contact-item .val a {
+      color: #6D28D9;
+    }
+
+    @media (max-width: 900px) {
+      .pol-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .pol-toc {
+        position: static;
+      }
+      .pol-page-title { font-size: 28px; }
+      .contact-card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <a href="/" style="display:block;text-decoration:none">
+          <svg class="logo-svg" width="180" height="34" viewBox="0 0 180 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+            <rect x="0" y="3" width="28" height="28" rx="8" fill="#6D28D9"/>
+            <path d="M8 11.5 L14 8.5 L20 11.5 L20 21.5 L14 24.5 L8 21.5 Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+            <path d="M8 11.5 L14 14.5 L20 11.5 M14 14.5 L14 24.5" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+            <text x="36" y="22" font-family="'Source Sans 3',Arial,sans-serif" font-size="15" font-weight="800" fill="#0F172A" letter-spacing="-0.3">Your Order Portal</text>
+          </svg>
+        </a>
+      </div>
+      <nav class="header-nav">
+        <a href="/" class="nav-link">My Order</a>
+        <a href="/faq.html" class="nav-link">FAQ</a>
+        <a href="/support.html" class="nav-link">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="pol-page">
+    <div class="container">
+
+      <a href="/" class="pol-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to My Order
+      </a>
+
+      <div class="pol-layout">
+
+        <!-- TOC -->
+        <aside class="pol-toc">
+          <h4>On this page</h4>
+          <ul>
+            <li><a href="#privacy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Privacy Policy</a></li>
+            <li><a href="#terms"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Terms of Service</a></li>
+            <li><a href="#refund-policy"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Refund Policy</a></li>
+            <li><a href="#shipping"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Shipping Policy</a></li>
+            <li><a href="#cookies"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="13" r="1"/><circle cx="9" cy="15" r="1"/></svg>Cookie Policy</a></li>
+            <li><a href="#contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Contact &amp; Address</a></li>
+          </ul>
+        </aside>
+
+        <!-- CONTENT -->
+        <div class="pol-content">
+
+          <span class="pol-eyebrow">Legal &amp; Policies</span>
+          <h1 class="pol-page-title">Policies &amp; Legal Information</h1>
+          <p class="pol-intro">
+            We're committed to transparency. Below you'll find the policies that govern our service, your rights as a customer, and how we handle your personal data. If you have any question about any of these policies, our support team is happy to clarify — just send us a message.
+          </p>
+
+          <!-- ============ PRIVACY ============ -->
+          <section class="pol-section" id="privacy">
+            <h2>Privacy Policy</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <p>Your Order Portal ("we", "us", or "our") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains what information we collect, how we use it, and the rights you have over your data.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>We collect information that you voluntarily provide when placing an order or contacting us:</p>
+            <ul>
+              <li>Full name and shipping address</li>
+              <li>Email address and phone number</li>
+              <li>Payment information (processed securely by our payment partner — we never store your full card details)</li>
+              <li>Order history and tracking information</li>
+              <li>Communications you send us through chat or email</li>
+            </ul>
+            <p>We also automatically collect technical data such as IP address, browser type, device, and pages visited, in order to operate and improve the service.</p>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>Your data is used to:</p>
+            <ul>
+              <li>Process and fulfill your order</li>
+              <li>Provide customer support and respond to your questions</li>
+              <li>Send order confirmations, shipping updates and important notices</li>
+              <li>Detect and prevent fraud or abuse</li>
+              <li>Comply with legal and tax obligations</li>
+              <li>Improve our website and service quality</li>
+            </ul>
+
+            <h3>3. How We Share Your Information</h3>
+            <p>We do <strong>not</strong> sell, rent, or trade your personal data. We share information only with:</p>
+            <ul>
+              <li><strong>Payment processors</strong> — to process your transaction securely</li>
+              <li><strong>Shipping carriers</strong> — to deliver your order</li>
+              <li><strong>Customer support tools</strong> — to provide live chat assistance</li>
+              <li><strong>Authorities</strong> — when required by law or to protect our legal rights</li>
+            </ul>
+
+            <h3>4. Data Retention</h3>
+            <p>We keep your personal data only as long as necessary to provide the service, comply with legal obligations, resolve disputes, and enforce our agreements. Order records are typically retained for 5 years for tax and accounting purposes.</p>
+
+            <h3>5. Your Rights</h3>
+            <p>Depending on your jurisdiction (GDPR, CCPA, etc.), you may have the right to:</p>
+            <ul>
+              <li>Access the personal data we hold about you</li>
+              <li>Correct inaccurate or incomplete data</li>
+              <li>Request deletion of your data</li>
+              <li>Object to or restrict certain processing</li>
+              <li>Receive a copy of your data in a portable format</li>
+              <li>Withdraw consent at any time</li>
+            </ul>
+            <p>To exercise any of these rights, contact us at <a href="mailto:privacy@you-order-portal.xyz">privacy@you-order-portal.xyz</a>.</p>
+
+            <h3>6. Security</h3>
+            <p>We use industry-standard security measures including TLS/SSL encryption, secure payment gateways, and access controls to protect your information. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
+
+            <h3>7. Children's Privacy</h3>
+            <p>Our service is not directed to anyone under 18. We do not knowingly collect personal information from children. If you believe a child has provided us with personal data, please contact us so we can delete it.</p>
+
+            <h3>8. Changes to This Policy</h3>
+            <p>We may update this Privacy Policy from time to time. The "Last updated" date at the top of this section reflects the most recent revision. Material changes will be communicated via email or a prominent notice on the website.</p>
+          </section>
+
+          <!-- ============ TERMS ============ -->
+          <section class="pol-section" id="terms">
+            <h2>Terms of Service</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <p>By accessing or using Your Order Portal, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should not use our website or service.</p>
+
+            <h3>1. Service Description</h3>
+            <p>Your Order Portal is an e-commerce service that sells curated mystery boxes containing brand-name products. Each box is hand-picked by our fulfillment team and shipped directly to the customer.</p>
+
+            <h3>2. Eligibility</h3>
+            <p>You must be at least 18 years old (or the age of majority in your jurisdiction) to place an order. By using the service, you represent that you meet this requirement and have the legal capacity to enter into this agreement.</p>
+
+            <h3>3. Orders and Payment</h3>
+            <ul>
+              <li>All prices are displayed in US Dollars (USD) and are subject to change without prior notice</li>
+              <li>Payment is required at the time of purchase</li>
+              <li>We accept major credit/debit cards (Visa, Mastercard, American Express, Discover) and select alternative methods</li>
+              <li>We reserve the right to refuse or cancel any order at our discretion (e.g., suspected fraud, pricing errors, stock shortages)</li>
+            </ul>
+
+            <h3>4. Mystery Box Disclosure</h3>
+            <p>Mystery box contents are randomized and surprise-based by nature. While we guarantee that the combined retail value of items will exceed the purchase price, we do not guarantee any specific item, brand, or category. Customers acknowledge and accept the surprise nature of the product at the time of purchase.</p>
+
+            <h3>5. Intellectual Property</h3>
+            <p>All content on this website — including text, graphics, logos, images, and software — is the property of Your Order Portal or its licensors and is protected by international copyright and trademark laws. You may not reproduce, distribute, or create derivative works without our prior written consent.</p>
+
+            <h3>6. User Conduct</h3>
+            <p>You agree not to:</p>
+            <ul>
+              <li>Use the service for any unlawful purpose</li>
+              <li>Attempt to gain unauthorized access to our systems</li>
+              <li>Interfere with the proper functioning of the website</li>
+              <li>Submit false or misleading information</li>
+              <li>Use automated scripts or bots to interact with the service</li>
+            </ul>
+
+            <h3>7. Limitation of Liability</h3>
+            <p>To the maximum extent permitted by law, Your Order Portal shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the service. Our total liability for any claim related to the service shall not exceed the amount you paid for the order in question.</p>
+
+            <h3>8. Disclaimer of Warranties</h3>
+            <p>The service is provided "as is" and "as available", without warranties of any kind, either express or implied. We do not warrant that the website will be uninterrupted, error-free, or free of viruses or other harmful components.</p>
+
+            <h3>9. Governing Law</h3>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of laws provisions. Any dispute arising from these Terms shall be resolved in the competent courts of Delaware.</p>
+
+            <h3>10. Changes to These Terms</h3>
+            <p>We reserve the right to modify these Terms at any time. Updated Terms will be posted on this page with a new "Last updated" date. Continued use of the service after changes constitutes acceptance of the revised Terms.</p>
+          </section>
+
+          <!-- ============ REFUND POLICY ============ -->
+          <section class="pol-section" id="refund-policy">
+            <h2>Refund Policy</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <p>We stand behind our product and want every customer to be satisfied. This Refund Policy explains when refunds are available and how to request one.</p>
+
+            <h3>1. Eligibility for Refunds</h3>
+            <p>You may request a full refund if:</p>
+            <ul>
+              <li>Your order has not yet been shipped (refund within 24 hours)</li>
+              <li>Your package was lost in transit and was not delivered after a reasonable investigation period</li>
+              <li>Your order arrived physically damaged or defective</li>
+              <li>You received an item that is significantly different from what was advertised</li>
+            </ul>
+
+            <h3>2. Non-Refundable Situations</h3>
+            <p>Due to the nature of mystery boxes, we cannot offer refunds in the following cases:</p>
+            <ul>
+              <li>Dissatisfaction with the specific items received (the surprise factor is part of the product)</li>
+              <li>Change of mind after the order has been shipped</li>
+              <li>Items damaged after delivery due to misuse</li>
+            </ul>
+
+            <h3>3. How to Request a Refund</h3>
+            <p>To request a refund, please use our <a href="/refund">refund request form</a> or contact our support team. You'll need to provide:</p>
+            <ul>
+              <li>Your order email address</li>
+              <li>The reason for your refund request</li>
+              <li>Photos of damaged items (if applicable)</li>
+            </ul>
+
+            <h3>4. Processing Time</h3>
+            <p>Once your refund request is approved, the amount will be credited to your original payment method within <strong>5–10 business days</strong>. Depending on your bank or card issuer, it may take additional time to appear in your account.</p>
+
+            <h3>5. Partial Refunds</h3>
+            <p>In some cases (e.g., partial damage to a box) we may offer a partial refund instead of a full one, subject to mutual agreement.</p>
+
+            <h3>6. Contact</h3>
+            <p>For any refund-related question, please email <a href="mailto:refunds@you-order-portal.xyz">refunds@you-order-portal.xyz</a>.</p>
+          </section>
+
+          <!-- ============ SHIPPING ============ -->
+          <section class="pol-section" id="shipping">
+            <h2>Shipping Policy</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <h3>1. Where We Ship</h3>
+            <p>We currently ship to the following countries:</p>
+            <ul>
+              <li>United States</li>
+              <li>Canada</li>
+              <li>United Kingdom</li>
+              <li>Australia</li>
+              <li>New Zealand</li>
+            </ul>
+
+            <h3>2. Processing Time</h3>
+            <p>Orders are processed and dispatched within <strong>1–3 business days</strong> after payment confirmation. During promotional periods or holidays, processing may take an additional 1–2 days.</p>
+
+            <h3>3. Delivery Times</h3>
+            <p>Estimated delivery times after dispatch:</p>
+            <ul>
+              <li><strong>United States:</strong> 5–8 business days</li>
+              <li><strong>Canada:</strong> 7–12 business days</li>
+              <li><strong>United Kingdom:</strong> 7–14 business days</li>
+              <li><strong>Australia &amp; New Zealand:</strong> 10–18 business days</li>
+            </ul>
+            <p>Delivery times are estimates and may vary depending on customs processing, local carriers, and weather conditions.</p>
+
+            <h3>4. Shipping Costs</h3>
+            <p>Standard shipping is <strong>free</strong> on all orders. There are no hidden fees at checkout.</p>
+
+            <h3>5. Tracking</h3>
+            <p>Once your order is dispatched, you'll receive a tracking code by email. You can also track your order directly on our website using the tracking section on the home page.</p>
+
+            <h3>6. Customs &amp; Import Duties</h3>
+            <p>For international orders, additional customs duties or import taxes may be charged by your local authorities upon delivery. These fees are determined by your country's customs office and are the responsibility of the recipient. Your Order Portal is not responsible for any such charges.</p>
+
+            <h3>7. Lost or Delayed Packages</h3>
+            <p>If your package is significantly delayed (more than 30 days from dispatch with no tracking updates), please contact our support team. We will open an investigation with the carrier and, if the package cannot be located, we will issue a full refund or send a replacement.</p>
+
+            <h3>8. Incorrect Address</h3>
+            <p>Please double-check your shipping address before placing the order. We are not responsible for packages sent to incorrect addresses provided by the customer. If you notice an error, contact us within <strong>2 hours</strong> of placing the order so we can attempt to correct it before dispatch.</p>
+          </section>
+
+          <!-- ============ COOKIES ============ -->
+          <section class="pol-section" id="cookies">
+            <h2>Cookie Policy</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <p>This website uses cookies and similar tracking technologies to improve your experience, analyze usage, and deliver relevant content.</p>
+
+            <h3>1. What Are Cookies?</h3>
+            <p>Cookies are small text files placed on your device when you visit a website. They allow the website to recognize your browser and remember information such as preferences and login state.</p>
+
+            <h3>2. Types of Cookies We Use</h3>
+            <ul>
+              <li><strong>Essential cookies</strong> — required for the website to function (e.g., session, security). These cannot be disabled.</li>
+              <li><strong>Functional cookies</strong> — remember your preferences (e.g., language, region).</li>
+              <li><strong>Analytics cookies</strong> — help us understand how visitors interact with the website (anonymized statistics).</li>
+              <li><strong>Marketing cookies</strong> — used by advertising partners to show you relevant ads. Only set with your consent.</li>
+            </ul>
+
+            <h3>3. Third-Party Cookies</h3>
+            <p>Some cookies are set by third-party services we use, such as the live chat widget and the order tracking widget. We do not control these cookies — please refer to the relevant third party's policy for more information.</p>
+
+            <h3>4. Managing Cookies</h3>
+            <p>You can control or delete cookies through your browser settings. Note that disabling essential cookies may affect the functionality of the website.</p>
+
+            <h3>5. Updates</h3>
+            <p>We may update this Cookie Policy from time to time. Please review it periodically to stay informed about our use of cookies.</p>
+          </section>
+
+          <!-- ============ CONTACT ============ -->
+          <section class="pol-section" id="contact">
+            <h2>Contact &amp; Company Information</h2>
+            <span class="pol-updated">Last updated: April 9, 2026</span>
+
+            <p>Below is the official contact and registration information for Your Order Portal. For the fastest response, we recommend using our live chat — it's available 24/7.</p>
+
+            <div class="contact-card">
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  Company
+                </div>
+                <div class="val">Your Order Portal LLC</div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Registered Address
+                </div>
+                <div class="val">1209 N Orange Street<br>Wilmington, DE 19801<br>United States</div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  General Email
+                </div>
+                <div class="val"><a href="mailto:hello@you-order-portal.xyz">hello@you-order-portal.xyz</a></div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  Customer Support
+                </div>
+                <div class="val"><a href="mailto:support@you-order-portal.xyz">support@you-order-portal.xyz</a></div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                  Refund Requests
+                </div>
+                <div class="val"><a href="mailto:refunds@you-order-portal.xyz">refunds@you-order-portal.xyz</a></div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Privacy Inquiries
+                </div>
+                <div class="val"><a href="mailto:privacy@you-order-portal.xyz">privacy@you-order-portal.xyz</a></div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Support Hours
+                </div>
+                <div class="val">24 hours / 7 days a week<br>via live chat</div>
+              </div>
+
+              <div class="contact-item">
+                <div class="lbl">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  Website
+                </div>
+                <div class="val"><a href="https://you-order-portal.xyz">you-order-portal.xyz</a></div>
+              </div>
+            </div>
+
+            <h3 style="margin-top:32px">Business Hours</h3>
+            <p>Our customer support team is available <strong>24 hours a day, 7 days a week</strong> via live chat. Email responses are typically sent within 12 hours, Monday through Sunday.</p>
+
+            <h3>Physical Mail</h3>
+            <p>If you need to send physical mail (which we generally discourage in favor of email for faster handling), please use the registered address above and write "Customer Service" on the envelope.</p>
+          </section>
+
+        </div><!-- /.pol-content -->
+
+      </div><!-- /.pol-layout -->
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <svg class="footer-logo-svg" width="180" height="34" viewBox="0 0 180 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Your Order Portal">
+          <rect x="0" y="3" width="28" height="28" rx="8" fill="#A78BFA"/>
+          <path d="M8 11.5 L14 8.5 L20 11.5 L20 21.5 L14 24.5 L8 21.5 Z" stroke="#0F172A" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+          <path d="M8 11.5 L14 14.5 L20 11.5 M14 14.5 L14 24.5" stroke="#0F172A" stroke-width="1.6" stroke-linejoin="round" fill="none"/>
+          <text x="36" y="22" font-family="'Source Sans 3',Arial,sans-serif" font-size="15" font-weight="800" fill="#fff" letter-spacing="-0.3">Your Order Portal</text>
+        </svg>
+        <div class="footer-links">
+          <a href="/">My Order</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/support.html">Support</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Your Order Portal LLC. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
