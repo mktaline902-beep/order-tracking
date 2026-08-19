@@ -1231,3 +1231,56 @@ body {
     max-height: 220px;
   }
 }
+
+/* ===== Order Summary card (feature ?t=) ===== */
+.section-summary { padding: 24px 0 0; }
+.section-summary .summary-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+  max-width: 640px;
+  margin: 0 auto;
+}
+.summary-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 18px;
+}
+.summary-title { font-size: 18px; font-weight: 800; color: var(--text); margin: 0; }
+.summary-badge {
+  font-size: 12px; font-weight: 700; letter-spacing: .2px;
+  padding: 5px 12px; border-radius: 999px; white-space: nowrap;
+}
+.summary-badge.is-processing { background: var(--brand-soft); color: var(--brand); }
+.summary-badge.is-shipped { background: var(--green-light); color: var(--green); }
+.summary-badge.is-cancelled { background: #fde8e8; color: var(--red); }
+.summary-grid { display: flex; flex-direction: column; gap: 2px; margin-bottom: 20px; }
+.summary-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text-light);
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-value { color: var(--text); font-weight: 600; text-align: right; }
+.summary-mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+.summary-carrier { color: var(--text-light); font-weight: 500; }
+.summary-pending { color: var(--text-light); font-weight: 500; font-style: italic; }
+.summary-total .summary-value { font-size: 17px; font-weight: 800; color: var(--brand); }
+.summary-cta { display: inline-block; text-align: center; }
+.summary-muted .summary-note {
+  color: var(--text-light); font-size: 14px; line-height: 1.6; margin: 8px 0 18px;
+}
+/* Skeleton */
+.summary-skeleton .sk {
+  background: linear-gradient(90deg, var(--bg-light) 25%, var(--border) 37%, var(--bg-light) 63%);
+  background-size: 400% 100%; animation: sk-shimmer 1.3s ease-in-out infinite;
+  border-radius: 8px;
+}
+.summary-skeleton .sk-title { height: 22px; width: 55%; margin-bottom: 20px; }
+.summary-skeleton .sk-row { height: 16px; width: 100%; margin: 12px 0; }
+.summary-skeleton .sk-btn { height: 44px; width: 180px; margin-top: 20px; border-radius: var(--radius); }
+@keyframes sk-shimmer { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+@media (max-width: 768px) {
+  .section-summary .summary-card { padding: 20px; border-radius: var(--radius); }
+}
