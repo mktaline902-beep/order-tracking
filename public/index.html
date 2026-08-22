@@ -8,7 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/members.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    /* Early gate: if a portal token (or a non-invalid mock) is present, enter the
+       "deciding" state so we never flash the tracking page before the members
+       area is revealed. No token = today's page, untouched. */
+    (function () {
+      try {
+        var p = new URLSearchParams(location.search);
+        var t = (p.get('t') || '').trim();
+        var m = p.get('mock');
+        if (t || (m && m !== 'invalid')) {
+          document.documentElement.classList.add('t-loading');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <style>
     .mobile-tracking-bar {
       display: none;
@@ -75,6 +91,36 @@
       </div>
     </div>
   </header>
+
+  <!-- Members loader (only while validating a token) -->
+  <div id="memberLoader" class="member-loader" aria-hidden="true">
+    <div class="member-loader-inner">
+      <div class="member-loader-ring"></div>
+      <p>Preparing your members area…</p>
+    </div>
+  </div>
+
+  <!-- Members tab bar (revealed only for a valid token) -->
+  <div id="memberTabs" class="member-tabs" role="tablist" aria-label="Members area">
+    <div class="container member-tabs-inner">
+      <button class="member-tab is-active" data-tab="curso" role="tab" aria-selected="true">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        Course
+      </button>
+      <button class="member-tab" data-tab="pedido" role="tab" aria-selected="false">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        My order
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== TAB: Course (members area) ===== -->
+  <div id="tab-curso" class="tab-panel" role="tabpanel" aria-label="Course">
+    <div id="courseMount" class="course-mount"></div>
+  </div>
+
+  <!-- ===== TAB: My order (existing tracking experience, unchanged) ===== -->
+  <div id="tab-pedido" class="tab-panel">
 
   <!-- Subheader -->
   <div class="subheader">
@@ -374,6 +420,8 @@
     </div>
   </section>
 
+  </div><!-- /#tab-pedido -->
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -400,6 +448,7 @@
   </footer>
 
   <script src="js/app.js"></script>
+  <script src="js/members-area.js"></script>
   <script src="js/order-summary.js"></script>
 </body>
 </html>

@@ -21,6 +21,16 @@
   if (!el) return;
   el.hidden = false;
 
+  // Additive hook: broadcast the token-validation outcome so the members-area
+  // shell can gate the "Curso" tab. Does NOT change token handling / RPC / errors.
+  function emit(state, data) {
+    try {
+      document.dispatchEvent(new CustomEvent('ordersummary:result', {
+        detail: { state: state, data: data || null }
+      }));
+    } catch (e) { /* CustomEvent unsupported — members shell has a timeout fallback */ }
+  }
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -160,22 +170,23 @@
     var key = mock === '1' ? '1' : mock;
     setTimeout(function () {
       var fx = Object.prototype.hasOwnProperty.call(FIXTURES, key) ? FIXTURES[key] : FIXTURES['1'];
-      if (fx == null) renderNotFound(); else renderSummary(fx);
+      if (fx == null) { renderNotFound(); emit('notfound'); }
+      else { renderSummary(fx); emit('valid', fx); }
     }, 500);
     return;
   }
 
   // ---- Chamada real à RPC ----
-  if (!window.supabase || !window.supabase.createClient) { renderError(); return; }
+  if (!window.supabase || !window.supabase.createClient) { renderError(); emit('error'); return; }
   var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   client.rpc('get_order_summary', { p_token: token }).then(function (res) {
-    if (res.error) { console.warn('[order-summary] rpc error', res.error.message); renderError(); return; }
+    if (res.error) { console.warn('[order-summary] rpc error', res.error.message); renderError(); emit('error'); return; }
     var data = res.data;
     if (Array.isArray(data)) data = data[0];
-    if (!data) { renderNotFound(); return; }
-    renderSummary(data);
+    if (!data) { renderNotFound(); emit('notfound'); return; }
+    renderSummary(data); emit('valid', data);
   }).catch(function (err) {
     console.warn('[order-summary] network error', err && err.message);
-    renderError();
+    renderError(); emit('error');
   });
 })();
