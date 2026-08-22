@@ -45,7 +45,7 @@
   var decided = false;
   function reveal() {
     if (decided) return; decided = true;
-    html.classList.remove('t-loading');
+    html.classList.remove('t-loading', 'show-pedido'); // ensure Curso is always the initial tab
     html.classList.add('t-member');   // Course becomes the default panel
   }
   function plain() {

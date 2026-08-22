@@ -273,3 +273,10 @@ html.t-member.show-pedido #tab-pedido { display: block; }
 @media (min-width: 920px) {
   .drawer-close, .drawer-scrim { display: none; }
 }
+
+/* ---- DESKTOP: hide "My order" tab + rastreio panel (member mode only) ---- */
+@media (min-width: 769px) {
+  .member-tab[data-tab="pedido"] { display: none; }
+  html.t-member #tab-pedido,
+  html.t-member.show-pedido #tab-pedido { display: none !important; }
+}
